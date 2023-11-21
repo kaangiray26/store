@@ -1,5 +1,22 @@
-# store
-Simple Object Storage
+<div align="center">
+    <a href="https://github.com/kaangiray26/store">
+        <img src="https://raw.githubusercontent.com/kaangiray26/store/main/images/logo.png" alt="Store Logo" width="256" height="256">
+    </a>
+    <h1 align="center">store</h1>
+    <p align="center">
+        Simple Object Storage
+        <br />
+        <div align="center">
+            <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kaangiray26/store?style=flat-square">
+            <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/kaangiray26/store?style=flat-square">
+            <img alt="GitHub issues" src="https://img.shields.io/github/issues/kaangiray26/store?style=flat-square">
+            <img alt="License" src="https://img.shields.io/github/license/kaangiray26/store.svg?style=flat-square">
+        </div>
+        <a href="https://github.com/kaangiray26/store/issues">Report Bug</a>
+        ·
+        <a href="https://github.com/kaangiray26/store/issues">Request Feature</a>
+    </p>
+</div>
 
 ## About
 **store** is a simple object storage system built with Node.js and PostgreSQL for basic needs. You can use it to get, add, replace, list and delete objects. Files are placed in a directory and their metadata are kept in a database. All files have a unique ID and can be accessed by it. This allows us to use **store** as a content-delivery network (CDN) for static files.
