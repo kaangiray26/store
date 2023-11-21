@@ -9,8 +9,8 @@ import crypto from "crypto";
 const pgp = pgPromise();
 
 const db = pgp({
-    host: "postgres",
-    port: 5432,
+    host: process.env.POSTGRES_HOST,
+    port: parseInt(process.env.POSTGRES_PORT),
     database: process.env.POSTGRES_DB,
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD
