@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://github.com/kaangiray26/store">
-        <img src="https://raw.githubusercontent.com/kaangiray26/store/main/images/logo.png" alt="Store Logo" width="256" height="256">
+        <img src="https://kaangiray26.github.io/store/images/logo.png" alt="Store Logo" width="256" height="256">
     </a>
     <h1 align="center">store</h1>
     <p align="center">
