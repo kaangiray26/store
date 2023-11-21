@@ -18,7 +18,7 @@ services:
         volumes:
             - uploads:/store/uploads
     postgres:
-        image: postgres:15.5-alpine
+        image: kaangiray26/postgres:2.0
         restart: on-failure
         environment:
             POSTGRES_USER: store # Set Postgres Username
@@ -28,7 +28,7 @@ services:
             - db-metadata:/var/lib/postgresql/data
         healthcheck:
             test: [ "CMD-SHELL", "pg_isready -U store" ]
-            interval: 1s
+            interval: 5s
             timeout: 5s
             retries: 5
 volumes:
