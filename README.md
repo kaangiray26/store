@@ -26,7 +26,7 @@ We have docker images for the server and it can be run with docker-compose. You 
 
 First, get the `docker-compose.yml` file:
 ```
-curl -O https://kaangiray26.github.io/strore/docker-compose.yml
+curl -O https://kaangiray26.github.io/store/docker-compose.yml
 ```
 
 Then, run the server:
