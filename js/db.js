@@ -58,7 +58,7 @@ async function addFile(req, res) {
 
     // Store metadata in database
     db.task(async t => {
-        await t.none("INSERT INTO objects(id, filename, extension, title, date, owner) VALUES($1, $2, $3, $4)", [req.file.filename, req.file.originalname, path.extname(req.file.originalname), req.body.title, new Date(), req.headers.username]);
+        await t.none("INSERT INTO objects(id, filename, extension, title, date, owner) VALUES($1, $2, $3, $4, $5, $6)", [req.file.filename, req.file.originalname, path.extname(req.file.originalname), req.body.title, new Date(), req.headers.username]);
         res.status(200).json({
             "status": "success",
             "file": req.file.filename,
