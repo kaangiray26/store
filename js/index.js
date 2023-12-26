@@ -50,6 +50,13 @@ app.get("/", (req, res) => {
     })
 })
 
+app.get("/auth", isAuthenticated, (req, res) => {
+    res.status(200).json({
+        "status": "success",
+        "response": "Authentication successful."
+    })
+})
+
 // Add file
 app.put("/add", isAuthenticated, upload.single("file"), db.addFile);
 
