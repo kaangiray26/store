@@ -1,7 +1,7 @@
 version: '3'
 services:
     app:
-        image: kaangiray26/store:1.1
+        image: kaangiray26/store:1.2
         restart: on-failure
         ports:
             - "3000:3000"
@@ -17,7 +17,7 @@ services:
             POSTGRES_PORT: 5432 # Postgres Database Port
             POSTGRES_DB: store # Set Postgres Database Name
         volumes:
-            - uploads:/store/uploads
+            - <local_directory_path>:/store/uploads
     postgres:
         image: kaangiray26/postgres:2.0
         restart: always

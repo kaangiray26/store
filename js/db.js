@@ -22,7 +22,7 @@ async function init() {
     // Create tables if they don't exist
     db.task(async t => {
         // Create tables if they don't exist
-        await t.none("CREATE TABLE IF NOT EXISTS objects (id UUID PRIMARY KEY, filename TEXT, date TIMESTAMP, owner TEXT);");
+        await t.none("CREATE TABLE IF NOT EXISTS objects (id UUID PRIMARY KEY, filename TEXT, extension TEXT, title TEXT, date TIMESTAMP, owner TEXT);");
         await t.none("CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, username TEXT, password TEXT);");
 
         // Check users
@@ -51,9 +51,14 @@ async function addFile(req, res) {
         return
     }
 
+    // Check for title
+    if (!req.body.title) {
+        req.body.title = req.file.originalname
+    }
+
     // Store metadata in database
     db.task(async t => {
-        await t.none("INSERT INTO objects(id, filename, date, owner) VALUES($1, $2, $3, $4)", [req.file.filename, req.file.originalname, new Date(), req.headers.username]);
+        await t.none("INSERT INTO objects(id, filename, date, owner) VALUES($1, $2, $3, $4)", [req.file.filename, req.file.originalname, path.extname(req.file.originalname), req.body.title, new Date(), req.headers.username]);
         res.status(200).json({
             "status": "success",
             "file": req.file.filename,
@@ -135,11 +140,22 @@ async function replaceFile(req, res) {
     })
 }
 
+async function searchFiles(req, res) {
+    // Fuzzy search for files owned by user
+    const objects = await db.any("SELECT * FROM objects WHERE (title % $1) AND similarity(title, $1) > 0.2 ORDER BY similarity(title, $1) DESC LIMIT 5", [req.query.title]);
+
+    res.status(200).json({
+        "status": "success",
+        "response": objects
+    })
+}
+
 export default {
     init,
     isAuthenticated,
     addFile,
     deleteFile,
     listFiles,
-    replaceFile
+    replaceFile,
+    searchFiles
 }
