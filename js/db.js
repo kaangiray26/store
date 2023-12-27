@@ -102,8 +102,14 @@ async function deleteFile(req, res) {
 }
 
 async function listFiles(req, res) {
+    // Get parameters
+    const sort = req.query.sort || "date";
+    const order = req.query.order || "DESC";
+    const limit = req.query.limit || 12;
+    const offset = req.query.offset || 0;
+
     // List files
-    const objects = await db.any("SELECT * FROM objects WHERE owner=$1", [req.headers.username]);
+    const objects = await db.any("SELECT * FROM objects WHERE owner=$1 ORDER BY $2 $3 LIMIT $4 OFFSET $5", [req.headers.username, sort, order, limit, offset]);
     res.status(200).json({
         "status": "success",
         "response": objects
