@@ -46,7 +46,8 @@ function isAuthenticated(req, res, next) {
 // Routes
 app.get("/", (req, res) => {
     res.status(200).json({
-        "response": "Our store is open!"
+        "response": "Our store is open!",
+        "version": process.env.version
     })
 })
 

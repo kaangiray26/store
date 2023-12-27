@@ -142,7 +142,7 @@ async function replaceFile(req, res) {
 
 async function searchFiles(req, res) {
     // Fuzzy search for files owned by user
-    const objects = await db.any("SELECT * FROM objects WHERE (title % $1) AND similarity(title, $1) > 0.2 ORDER BY similarity(title, $1) DESC LIMIT 5", [req.query.title]);
+    const objects = await db.any("SELECT * FROM objects WHERE strict_word_similarity(title, $1) > 0.2 ORDER BY strict_word_similarity(title, $1) DESC LIMIT 5", [req.query.title]);
 
     res.status(200).json({
         "status": "success",
