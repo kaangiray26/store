@@ -9,7 +9,7 @@ services:
             postgres:
                 condition: service_healthy
         environment:
-            version: 1.6 # Set App Version
+            version: 1.7 # Set App Version
             port: 3000 # Set Port
             NODE_ENV: production # Set Node Environment
             POSTGRES_HOST: postgres # Postgres Host/IP
