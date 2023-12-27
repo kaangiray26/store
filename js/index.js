@@ -71,5 +71,7 @@ app.put("/replace/:id", isAuthenticated, upload.single("file"), db.replaceFile);
 
 app.get("/search", isAuthenticated, db.searchFiles);
 
+app.get("/details/:id", db.getFileDetails);
+
 // Export
 export default app;

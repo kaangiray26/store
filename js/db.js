@@ -150,6 +150,23 @@ async function searchFiles(req, res) {
     })
 }
 
+async function getFileDetails(req, res) {
+    // Get file details
+    const object = await db.oneOrNone("SELECT * FROM objects WHERE id=$1", [req.params.id]);
+    if (!object) {
+        res.status(404).json({
+            "status": "error",
+            "response": "File not found."
+        })
+        return
+    }
+
+    res.status(200).json({
+        "status": "success",
+        "response": object
+    })
+}
+
 export default {
     init,
     isAuthenticated,
@@ -157,5 +174,6 @@ export default {
     deleteFile,
     listFiles,
     replaceFile,
-    searchFiles
+    searchFiles,
+    getFileDetails
 }
